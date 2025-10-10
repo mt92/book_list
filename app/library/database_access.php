@@ -33,6 +33,7 @@ class DatabaseAccess {
     public static function deleteBy(string $id) {
         $sql = "DELETE FROM books WHERE id = :id";
         $stmt = self::getInstance()->prepare($sql);
+        $param['id'] = $id;
         $stmt->execute($param);
     }
 
