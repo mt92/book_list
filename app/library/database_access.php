@@ -29,4 +29,10 @@ class DatabaseAccess {
         $stmt->execute($param); // $param 配列の中の ['id' => $id] が :id にバインド
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function deleteBy(string $id) {
+        $sql = "DELETE FROM books WHERE id = :id";
+        $stmt = self::getInstance()->prepare($sql);
+        $stmt->execute($param);
+    }
 }
