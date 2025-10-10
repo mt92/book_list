@@ -29,7 +29,7 @@
                     <tbody>
                         <?php foreach ($data as $row) { ?>
                             <tr>
-                                <td><?php echo $row["title"]; ?></td>
+                                <td><a href=<?php echo "/htdocs/book_detail.php?id=" . $row["id"] ?>><?php echo $row["title"]; ?></a></td>
                                 <td><?php echo $row["author"]; ?></td>
                                 <td><?php echo $row["publisher_name"]; ?></td>
                             </tr>

@@ -21,4 +21,12 @@ class DatabaseAccess {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function fetchBy(string $id) {
+        $sql = "SELECT * FROM books WHERE id = :id ORDER BY id";
+        $stmt = self::getInstance()->prepare($sql);
+        $param['id'] = $id; // SQLの :id にバインドするための値（引数 $id）をセット
+        $stmt->execute($param); // $param 配列の中の ['id' => $id] が :id にバインド
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
