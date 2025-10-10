@@ -32,11 +32,24 @@
                                 <td><a href=<?php echo "/htdocs/book_detail.php?id=" . $row["id"] ?>><?php echo $row["title"]; ?></a></td>
                                 <td><?php echo $row["author"]; ?></td>
                                 <td><?php echo $row["publisher_name"]; ?></td>
+                                <td>
+                                    <button onclick="deleteUser('<?php echo $row["id"]; ?>');">削除</button>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
         </div>
+        <form action="book.php" name="delete_form" method="POST">
+            <input type="hidden" name="id" value="" />
+            <input type="hidden" name="delete" value="" />
+        </form>
+        <script>
+            function deleteUser(id) {
+                document.delete_form.id.value = id;
+                document.delete_form.submit();
+            }
+        </script>
     </body>
 </html>
