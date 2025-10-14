@@ -2,8 +2,8 @@
 declare(strict_types=1);
 require_once(dirname(__DIR__) . "/library/database_access.php");
 
-if(mb_strtolower($_SERVER['REQUEST_METHOD']) === 'post') {
-    if (isset($_POST['detail'])) {
+if(mb_strtolower($_SERVER['REQUEST_METHOD']) === 'post') { //「POST」「post」に対応
+    if (isset($_POST['detail'])) { // JSON形式の書籍データを連想配列としてデコード
         $data = json_decode($_POST['detail'], true);
         $id = $data['id'];
         // DateTimeオブジェクトを作成し、指定された日時文字列を解析する
@@ -13,7 +13,8 @@ if(mb_strtolower($_SERVER['REQUEST_METHOD']) === 'post') {
         require_once(dirname(__DIR__) . "/template/edit.php");
     } else {
         $data = json_decode($_POST['data'], true);
-        $id = (string)$data['id'];
+        $id = (string)$data['id']; // IDはJSONに入っている
+        // フォームから送られた各項目を取得
         $title = $_POST['title'] ?? '';
         $isbn = $_POST['isbn'] ?? '';
         $price = $_POST['price'] ?? '';
