@@ -33,13 +33,28 @@ class DatabaseAccess {
     public static function deleteBy(string $id) {
         $sql = "DELETE FROM books WHERE id = :id";
         $stmt = self::getInstance()->prepare($sql);
-        $param['id'] = $id;
+        $param = ["id" => $id];
         $stmt->execute($param);
     }
 
     public static function insert(string $title, string $isbn, int $price, string $author, string $publisher_name, string $created) {
         $sql = "INSERT INTO books (title, isbn, price, author, publisher_name, created) VALUES (:title, :isbn, :price, :author, :publisher_name, :created);";
         $param = [
+            "title" => $title,
+            "isbn" => $isbn,
+            "price" => $price,
+            "author" => $author,
+            "publisher_name" => $publisher_name,
+            "created" => $created
+        ];
+        $stmt = self::getInstance()->prepare($sql);
+        return $stmt->execute($param);
+    }
+
+    public static function update(string $id, string $title, string $isbn, int $price, string $author, string $publisher_name, string $created) {
+        $sql = "UPDATE books SET title=:title, isbn=:isbn, price=:price, author=:author, publisher_name=:publisher_name, created=:created WHERE id = :id;";
+        $param = [
+            "id" => $id,
             "title" => $title,
             "isbn" => $isbn,
             "price" => $price,
