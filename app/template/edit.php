@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
         <title>書籍登録</title>
+        <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
         <div id="header">
