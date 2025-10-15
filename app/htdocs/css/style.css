@@ -46,3 +46,7 @@ a {
 .container a {
     margin-left: auto;
 }
+
+.error {
+    color: #f00;
+}

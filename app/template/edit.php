@@ -20,13 +20,13 @@
                     タイトル: <input type="text" name="title" value=<?php echo $data['title']; ?>>
                 </div>
                 <div>
-                    ISBN: <input type="text" name="isbn" value=<?php echo $data['isbn']; ?>>
+                    ISBN: <input type="text" name="isbn" value=<?php echo $data['isbn']; ?>> <span class="error"><?php if($isbnError) { echo $_SESSION['isbnError']; } ?></span>
                 </div>
                 <div>
                     著者: <input type="text" name="author" value=<?php echo $data['author']; ?>>
                 </div>
                 <div>
-                    価格: <input type="text" name="price" value=<?php echo $data['price']; ?>>
+                    価格: <input type="text" name="price" value=<?php echo $data['price']; ?>> <span class="error"><?php if($priceError) { echo $_SESSION['priceError']; } ?></span>
                 </div>
                 <div>
                     出版社: <input type="text" name="publisher_name" value=<?php echo $data['publisher_name']; ?>>

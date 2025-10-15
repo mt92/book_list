@@ -20,13 +20,13 @@
                     タイトル: <input type="text" name="title">                                    
                 </div>
                 <div>
-                    ISBN: <input type="text" name="isbn">
+                    ISBN: <input type="text" name="isbn" placeholder="例）111-1-111111-11-1"> <span class="error"><?php if($isbnError) { echo $_SESSION['isbnError']; } ?></span>
                 </div>
                 <div>
                     著者: <input type="text" name="author">
                 </div>
                 <div>
-                    価格: <input type="text" name="price">
+                    価格: <input type="text" name="price" placeholder="例）1000"> <span class="error"><?php if($priceError) { echo $_SESSION['priceError']; } ?></span>
                 </div>
                 <div>
                     出版社: <input type="text" name="publisher_name">
