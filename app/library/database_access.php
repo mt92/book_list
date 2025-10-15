@@ -34,7 +34,7 @@ class DatabaseAccess {
         $sql = "DELETE FROM books WHERE id = :id";
         $stmt = self::getInstance()->prepare($sql);
         $param = ["id" => $id];
-        $stmt->execute($param);
+        return $stmt->execute($param);
     }
 
     public static function insert(string $title, string $isbn, int $price, string $author, string $publisher_name, string $created) {
