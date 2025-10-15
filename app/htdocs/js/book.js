@@ -6,7 +6,7 @@ function deleteUser(id, title) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `id=${encodeURIComponent(id)}&delete=1`
+            body: `id=${encodeURIComponent(id)}&title=${encodeURIComponent(title)}&delete=1`
         })
         .then(response => {
             if (response.ok) {

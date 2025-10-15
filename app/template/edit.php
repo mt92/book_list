@@ -37,7 +37,7 @@
                 <div>
                     <input type="hidden" name="data" value="<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>">
                     <input type="submit" name="update" value="更新">
-                    <input type="button" value="戻る" onclick="location.href='book_detail.php?id=<?php echo $id ?>'; return false;">
+                    <input type="button" value="戻る" onclick="location.href='../htdocs/book_detail.php?id=<?php echo $id ?>'; return false;">
                 </div>
             </form>
         </div>

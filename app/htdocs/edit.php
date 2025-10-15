@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
+// 共通部分の読込
+if (session_status() == PHP_SESSION_NONE) {
+   session_start();
+}
 require_once(dirname(__DIR__) . "/library/database_access.php");
+require_once(dirname(__DIR__) . "/library/logger.php");
 
 if(mb_strtolower($_SERVER['REQUEST_METHOD']) === 'post') { //「POST」「post」に対応
     if (isset($_POST['detail'])) { // JSON形式の書籍データを連想配列としてデコード
@@ -25,8 +30,9 @@ if(mb_strtolower($_SERVER['REQUEST_METHOD']) === 'post') { //「POST」「post�
         $dateTime = new DateTime($created);
         // date()関数を使用して、datetime-local形式の文字列に変換する
         $formattedDateTime = $dateTime->format('Y-m-d\TH:i');
-        DatabaseAccess::update($id, $title, $isbn, (int)$price, $author, $publisher_name, $formattedDateTime);        
-        require_once(dirname(__DIR__) . "/htdocs/book.php");
+        DatabaseAccess::update($id, $title, $isbn, (int)$price, $author, $publisher_name, $formattedDateTime);
+        writeLog("【処理】ID:${id} 「${title}」更新");
+        header('Location: /htdocs/book.php');
     }
 }
 ?>

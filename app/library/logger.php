@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 function writeLog(string $message): void {
+    if (!isset($_SESSION['loginFlag'])) {
+        $_SESSION['loginFlag'] = true;
+    }
     date_default_timezone_set('Asia/Tokyo');
     $now = date("Y/m/d H:i:s");
     $log = "{$now}: {$message}\n";

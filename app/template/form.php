@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <input type="submit" value="登録">
-                    <input type="button" value="戻る" onclick="location.href='book.php'; return false;">
+                    <input type="button" value="戻る" onclick="location.href='../htdocs/book.php'; return false;">
                 </div>
             </form>
         </div>

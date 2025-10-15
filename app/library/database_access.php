@@ -50,6 +50,10 @@ class DatabaseAccess {
         $stmt = self::getInstance()->prepare($sql);
         return $stmt->execute($param);
     }
+    
+    public static function lastInsertId() {
+        return self::getInstance()->lastInsertId();
+    }
 
     public static function update(string $id, string $title, string $isbn, int $price, string $author, string $publisher_name, string $created) {
         $sql = "UPDATE books SET title=:title, isbn=:isbn, price=:price, author=:author, publisher_name=:publisher_name, created=:created WHERE id = :id;";
