@@ -9,3 +9,5 @@ INSERT INTO books (title, isbn, price, author, publisher_name, created) VALUES (
 INSERT INTO books (title, isbn, price, author, publisher_name, created) VALUES ('翻訳の迷路', '888-8-888888-88-8', 1700, '高橋まさみ', '光文社', '2024-04-12T12:00:00');
 INSERT INTO books (title, isbn, price, author, publisher_name, created) VALUES ('無限の可能性', '999-9-999999-99-9', 2600, '小林雅彦', 'PHP研究所', '2024-04-12T12:00:00');
 INSERT INTO books (title, isbn, price, author, publisher_name, created) VALUES ('果てしなき旅路', '101-0-101010-10-1', 2300, '斎藤あやか', '講談社', '2024-04-12T12:00:00');
+-- usersテーブルへのデータ登録
+INSERT INTO users (login_id, password, name, created) VALUES ('test', '$2y$10$/LK4ExWFmxYaArtGzkBbOu/g5suTI/fxKuZ5nchb.MixuTWUUzoPK' /* PW: test */, 'TEST', '2025-10-20T11:10:00');

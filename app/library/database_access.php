@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
+// 書籍情報テーブルへのアクセス
 class DatabaseAccess {
 
     private static PDO $pdo;
 
     private function __construct() {}
 
-    private static function getInstance(): PDO {
+    public static function getInstance(): PDO {
         if(!isset(self::$pdo)) {
             $dsn = "pgsql:host=book_list_php_db_container;dbname=postgres";
             self::$pdo = new PDO($dsn, "root", "root");
@@ -67,6 +68,38 @@ class DatabaseAccess {
             "created" => $created
         ];
         $stmt = self::getInstance()->prepare($sql);
+        return $stmt->execute($param);
+    }
+}
+
+// ユーザー情報テーブルへのアクセス
+class Users {
+    private static ?PDO $pdo = null;
+
+    private static function init(): PDO {
+        if (self::$pdo === null) {
+            self::$pdo = DatabaseAccess::getInstance();
+        }
+        return self::$pdo;
+    }
+
+    public static function getById(string $id): array|false {
+        $sql = "SELECT * FROM users WHERE login_id = :login_id";
+        $stmt = self::init()->prepare($sql);
+        $param = ["login_id" => $id];
+        $stmt->execute($param);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function insert(string $id, string $password, string $name, string $created) {
+        $sql = "INSERT INTO users (login_id, password, name, created) VALUES (:login_id, :password, :name, :created);";
+        $param = [
+            "login_id" => $id,
+            "password" => password_hash($password, PASSWORD_DEFAULT),
+            "name" => $name,
+            "created" => $created
+        ];
+        $stmt = self::init()->prepare($sql);
         return $stmt->execute($param);
     }
 }

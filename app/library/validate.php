@@ -11,6 +11,11 @@ function isNotNull(string $str): bool {
     return trim($str) !== '';
 }
 
+/* 半角英数字判定 */
+function isHalfWidthAlnum($str): bool {
+    return (bool) preg_match("/^[a-zA-Z0-9]+$/", $str);
+}
+
 /**
  * 数値判定
  * 
@@ -38,18 +43,50 @@ function isMaxLength(string $str, int $length): bool {
 }
 
 // バリデーションチェック
-function validateCheck($str, $type) {
+function validateCheck($str, $type = null) {
     $errorMessage = '';
 
-    if($type == "isnum" && !(isNumeric($str))) {
-        $errorMessage = "半角数字で入力してください。";
-    }
-
-    if($type == "isbn") {
+    if($type == "isnum") {
+        if(!(isNumeric($str))) {
+            $errorMessage = "半角数字で入力してください。";
+        }
+    } elseif($type == "id") {
+        $errorMessage = userIdCheck($str);
+    } elseif($type == "pass") {
+        $errorMessage = userPassCheck($str);
+    } elseif($type == "isbn") {
         $errorMessage = isbnCheck($str);
+    } else {
+        if(!(isNotNull($str))) {
+            $errorMessage = "入力必須項目です。";
+        }
     }
 
     return $errorMessage;
+}
+
+// ユーザーIDのバリデーションチェック
+function userIdCheck(string $id) {
+    if(!(isNotNull($id))) {
+        return "入力必須項目です。";
+    } elseif(!isHalfWidthAlnum($id)) {
+        return "半角英数字で入力してください。";
+    }
+
+    return NULL;
+}
+
+// ユーザーパスワードのバリデーションチェック
+function userPassCheck(string $pass) {
+    if(!(isNotNull($pass))) {
+        return "入力必須項目です。";
+    } elseif(!isHalfWidthAlnum($pass)) {
+        return "半角英数字で入力してください。";
+    } elseif(!isMaxLength($pass, 16)) {
+        return "文字数は16文字以内で入力してください。";
+    }
+
+    return NULL;
 }
 
 // ISBNのバリデーションチェック
